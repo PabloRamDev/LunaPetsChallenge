@@ -1,45 +1,48 @@
 "use client"
-import * as react from 'react'
-import {z} from 'zod'
-import { SubmitHandler, useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import {logIn} from '@/redux/features/authSlice'
 import { Load } from '@/redux/features/servicesSlice'
 import {useDispatch} from 'react-redux'
 import { AppDispatch } from '@/redux/store'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import * as yup from 'yup'
+import {Formik, Form, Field} from 'formik'
 
-const validationSchema = z
-.object({
-  email: z.string().min(1, { message: "Email is required" }).email({
-    message: "Must be a valid email",
-  }),
+
+
+const validationSchema = yup
+.object().shape({
+  email: yup.string()
+  .email('Invalid email')
+  .required('Required')
 })
 
-type ValidationSchema = z.infer<typeof validationSchema>
+
+interface LoginForm {
+  email: string;
+}
 
 
-const Form = () => {
+const LoginForm = () => {
 
-    const [email,setEmail] = react.useState<string>('')
 
     const dispatch = useDispatch<AppDispatch>()
 
     const router = useRouter()
 
+    const initialValues: LoginForm = { email: '' };
+
     
-    
-    const handleSubmit = async (data: string) => {
+    const handleSubmit = async (data: typeof initialValues) => {
         
         
         await axios.get("http://localhost:8000/api/v1/services/", {
             params: {
-                email: email
+                email: data.email
             }
         }).then(res => {
             if(res.status === 200 && res.data.length > 0){
-                dispatch(logIn(email))
+                dispatch(logIn(data.email))
                 dispatch(Load(res.data))
                 router.push('/dashboard')
             }
@@ -52,27 +55,33 @@ const Form = () => {
   
 
   return (
+    <Formik
+    initialValues={initialValues}
+    onSubmit={handleSubmit}
+    validationSchema={validationSchema}
     
-    <form className='flex flex-col col-span-2 sm:col-span-1 gap-5 h-full justify-end bg-white dar:bg-slate-700 p-20 rounded-3xl' onSubmit={e => {
-        e.preventDefault()
-        handleSubmit(email)}}>
-
-        <label htmlFor="email">Email</label>
-        <input 
-            className='rounded-xl p-3 bg-slate-200' 
-            type="email" 
-            required 
-            id="email" 
-            placeholder='your email'
-            onChange={e => setEmail(e.target.value)}
-            
-             />
-        
-        <button className='bg-red-500 rounded-full p-3' type="submit">Submit</button>
+  >
+    {({errors, touched})=> (
+    <Form className="flex flex-col">
+    <Field
+        className='rounded-xl p-3 bg-slate-200 focus:ring-red-400 border border-red-300 dark:text-slate-700' 
+        type="email" 
+        id="email"
+        placeholder='your email'
+        name = 'email'
+         />
+      
+      {touched.email && errors.email && <div className='font-bold popins text-red-400'>{errors.email}</div>}
+       
+      <button className='bg-red-500 hover:bg-red-600 duration-200 rounded-full p-3 text-white my-5' type="submit">Submit</button>
 
 
-    </form>
+    </Form>
+    
+      )}
+    
+    </ Formik>
   )
 }
 
-export default Form
+export default LoginForm

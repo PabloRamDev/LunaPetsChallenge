@@ -13,10 +13,10 @@ const lilita = Lilita_One({
 export default function Page(){
 
 
-    return <main className="p-5 flex w-full h-auto">
+    return <main className="p-5 flex w-full h-full">
         
-        <section className="rounded-2xl w-full p-5">
-            <h2 className={`${lilita.className} text-3xl mb-5`}>
+        <section className="rounded-2xl w-full p-10">
+            <h2 className={`${lilita.className} text-4xl mb-5`}>
                 My Services
             </h2>
             <Servicestable />

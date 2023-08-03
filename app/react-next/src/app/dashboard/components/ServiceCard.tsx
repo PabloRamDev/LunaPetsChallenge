@@ -6,14 +6,14 @@ import Link from 'next/link'
 const ServiceCard = ({props}: {props: SlicesState}) => {
   return (
     <>
-    <div className="max-w-sm col-span-12 md:col-span-3 bg-white border border-gray-200 rounded-lg dark:bg-cyan-900 shadow-lg justify-self-center">
-    <a href="#">
+    <div className="max-w-sm col-span-1 bg-white border border-gray-200 rounded-lg dark:bg-cyan-900 shadow-lg justify-self-center">
+    
         <img className="rounded-t-lg" src={props.pet_img} alt={props.pet_name} />
-    </a>
+    
     <div className="p-5">
-        <a href="#">
+       
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
-        </a>
+        
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{props.pet_name}</p>
         
         <Link href="#" className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center ${props.status == 'pending' ? 'bg-red-700 rounded-lg hover:bg-red-800' : 'bg-green-700 rounded-lg hover:bg-green-800' } text-white  focus:ring-4 focus:outline-none focus:ring-blue-300`}>
