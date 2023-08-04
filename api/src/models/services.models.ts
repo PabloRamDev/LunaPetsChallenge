@@ -31,7 +31,7 @@ function getService(id: string):Promise<service>{
 
 function updateService(id:string, newData: service) {
 
-    const filePath = path.join(__dirname, '..','data', 'services.json')
+    const filePath = path.join(process.cwd(), 'services.json')
     const services = readJSON('services.json')
 
     return new Promise((resolve, reject) => {

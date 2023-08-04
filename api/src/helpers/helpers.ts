@@ -40,7 +40,7 @@ function serviceExists(data: service[], id: string):Promise<service>{
 }
 
 function readJSON(filename: string): service[] {
-    const filePath = path.join(__dirname, '..', 'data', filename);
+    const filePath = path.join(process.cwd(), filename);
     const data = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(data) as service[];
   }

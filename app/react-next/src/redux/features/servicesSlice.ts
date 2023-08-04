@@ -12,6 +12,7 @@ export type SlicesState = {
     pet_name: string,
     pet_img: string,
     pet_sitter_img: string,
+    price:string,
     status: string
 }
 

@@ -1,9 +1,9 @@
-import { SlicesState } from '@/redux/features/servicesSlice'
+
 import React from 'react'
-import Image from 'next/image'
+import type { SlicesState } from '@/redux/features/servicesSlice'
 import Link from 'next/link'
 
-const ServiceCard = ({props}: {props: SlicesState}) => {
+const Card = ({props}: {props: SlicesState}) => {
   return (
     <>
     <div className="max-w-sm col-span-1 bg-white border border-gray-200 rounded-lg dark:bg-cyan-900 shadow-lg justify-self-center">
@@ -26,8 +26,7 @@ const ServiceCard = ({props}: {props: SlicesState}) => {
     </div>
 </div>
     </>
-    
   )
 }
 
-export default ServiceCard
+export default Card

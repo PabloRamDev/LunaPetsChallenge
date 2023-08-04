@@ -51,7 +51,8 @@ const LoginForm = () => {
         }).then(res => {
             
                 dispatch(logIn(data.email))
-                dispatch(Load(res.data))
+                dispatch(logInSuccess())
+                localStorage.setItem('email', data.email)
                 router.push('/dashboard')
            
         }).catch(error => {

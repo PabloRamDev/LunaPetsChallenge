@@ -1,11 +1,11 @@
 import express from 'express'
-import { getUserData, patchService } from '../controllers/services.controller'
+import { getUserData, patchService,getServiceById } from '../controllers/services.controller'
 
 
 const router = express.Router()
 
 router.route('/api/v1/services').get(getUserData)
-router.route('/api/v1/services/:id').patch(patchService)
+router.route('/api/v1/services/:id').get(getServiceById).patch(patchService)
 
 
 

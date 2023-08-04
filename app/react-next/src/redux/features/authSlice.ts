@@ -4,7 +4,7 @@ type initialState = {
     value: AuthState;
 }
 
-type AuthState = {
+export type AuthState = {
     email: string,
     isLoading: boolean,
     message: string

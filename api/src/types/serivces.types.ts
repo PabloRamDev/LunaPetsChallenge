@@ -5,6 +5,7 @@ export type service = {
         user_email: string,
         pet_sitter_id: string,
         pet_sitter_img: string,
+        price: string,
         status: string
     
 }
