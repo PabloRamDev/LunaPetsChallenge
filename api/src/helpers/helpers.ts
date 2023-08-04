@@ -8,7 +8,7 @@ function serviceByEmail(data: service[], email: string):Promise<service[]>{
     return new Promise((resolve, reject) => {
         const response = data.filter(record => record.user_email == email)
        
-        if(!response){
+        if(!response || response.length == 0){
             reject({
                 message: 'not found',
                 status: 404
