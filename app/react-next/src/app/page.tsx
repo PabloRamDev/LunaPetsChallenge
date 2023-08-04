@@ -26,7 +26,7 @@ export default function Home() {
           
           </p>
         </div>
-        <Image className='col-span-2 md:col-span-1 justify-self-end ' src={'/hero.png'} alt='pet owner'  height={350} width={350} />
+        <Image className='col-span-2 md:col-span-1 justify-self-center p-10 md:justify-self-end md:p-0 ' src={'/hero.png'} alt='pet owner'  height={350} width={350} />
 
        
        

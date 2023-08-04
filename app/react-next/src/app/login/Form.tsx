@@ -1,12 +1,16 @@
 "use client"
-import {logIn} from '@/redux/features/authSlice'
+//actions
+import { logIn, logInSuccess, logInFailure } from '@/redux/features/authSlice'
+import { useAppSelector } from '@/redux/store'
 import { Load } from '@/redux/features/servicesSlice'
-import {useDispatch} from 'react-redux'
+//hooks
+import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@/redux/store'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import * as yup from 'yup'
-import {Formik, Form, Field} from 'formik'
+import { Formik, Form , Field } from 'formik'
+import { SyncLoader } from 'react-spinners'
 
 
 
@@ -32,7 +36,11 @@ const LoginForm = () => {
 
     const initialValues: LoginForm = { email: '' };
 
+    const { isLoading } = useAppSelector(state => state.authReducer.value)
+
+ 
     
+
     const handleSubmit = async (data: typeof initialValues) => {
         
         
@@ -41,12 +49,14 @@ const LoginForm = () => {
                 email: data.email
             }
         }).then(res => {
-            if(res.status === 200 && res.data.length > 0){
+            
                 dispatch(logIn(data.email))
                 dispatch(Load(res.data))
                 router.push('/dashboard')
-            }
-            
+           
+        }).catch(error => {
+          
+          dispatch(logInFailure(error.message))
         })
 
         
@@ -72,9 +82,9 @@ const LoginForm = () => {
          />
       
       {touched.email && errors.email && <div className='font-bold popins text-red-400'>{errors.email}</div>}
-       
-      <button className='bg-red-500 hover:bg-red-600 duration-200 rounded-full p-3 text-white my-5' type="submit">Submit</button>
-
+      
+      <button className='bg-red-500 hover:bg-red-600 duration-200 rounded-full p-3 text-white my-5' type="submit">{isLoading ? <SyncLoader color='white' /> : 'Submit'}</button>
+     
 
     </Form>
     

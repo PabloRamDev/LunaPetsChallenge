@@ -5,12 +5,16 @@ type initialState = {
 }
 
 type AuthState = {
-    email: string
+    email: string,
+    isLoading: boolean,
+    message: string
 }
 
 const initialState = {
     value : {
-        email: ''
+        email: '',
+        isLoading: false,
+        message: ''
     } as AuthState
 } as initialState
 
@@ -24,12 +28,31 @@ export const auth = createSlice({
         logIn: (state, action: PayloadAction<string>)=> {
             return {
                 value: {
-                    email: action.payload
+                    email: action.payload,
+                    isLoading: true,
+                    message: ''
                 }
             }
-        }
+        },
+        logInSuccess: (state) => {
+            return {
+                value: {
+                email: state.value.email,
+                isLoading: false,
+                message: state.value.message
+            }}
+            
+        },
+        logInFailure: (state, action: PayloadAction<string>) => {
+            return {
+                value: {
+                email: state.value.email,
+                isLoading: false,
+                message: action.payload
+            }}
+        },
     }
 })
 
-export const {logIn, logOut } = auth.actions
+export const {logIn, logOut, logInSuccess, logInFailure } = auth.actions
 export default auth.reducer
