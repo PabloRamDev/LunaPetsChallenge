@@ -19,19 +19,15 @@ Before you start, make sure you have the following installed on your system:
 
 ## Getting Started
 
-1. Clone the repository:
 
-```bash
-git clone https://github.com/your-username/mypetlife.git
-```
 
-2. Navigate to the project folder:
+1. Navigate to the project folder:
 
 ```bash
 cd app/react-next
 ```
 
-3. Install the dependencies:
+2. Install the dependencies:
 
 Using npm:
 
@@ -60,4 +56,23 @@ or using yarn:
 ```bash
 yarn dev
 ```
+## How to use
+
+![image](https://github.com/PabloRamDev/LunaPetsChallenge/assets/123395800/6c35d6ef-6e8d-42e2-8713-6876de96721c)
+
+1. to login click on the login button on the nav bar
+2. in the login page, enter a valid email: (user1@email.com) or add one in the api, following the instructions there present.
+
+![image](https://github.com/PabloRamDev/LunaPetsChallenge/assets/123395800/0407256c-b971-46c9-acb3-52a82a4d4c38)
+
+3.click on the status button of a service:
+
+![image](https://github.com/PabloRamDev/LunaPetsChallenge/assets/123395800/227da69d-a5f9-4494-8933-11f47929aaec)
+
+4.complete the payment form and submit.
+
+![image](https://github.com/PabloRamDev/LunaPetsChallenge/assets/123395800/1e56a8c7-9a18-4ab6-aa71-5340ab83d441)
+
+
+
 Happy pet-loving! 🐾😊
