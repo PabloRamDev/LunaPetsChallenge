@@ -1,4 +1,4 @@
-import express, { Express} from 'express';
+import express, { Express } from 'express';
 import router from  './routes/service.routes'
 import cors from 'cors'
 

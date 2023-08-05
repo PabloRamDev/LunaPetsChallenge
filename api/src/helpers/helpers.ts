@@ -2,6 +2,7 @@ import { service } from "../types/serivces.types"
 import fs from 'fs'
 import path from 'path'
 
+//helper functions to filter services by email, find a service by id and to read and write the json database.
 
 function serviceByEmail(data: service[], email: string):Promise<service[]>{
 
@@ -50,7 +51,8 @@ async function writeJSON(filename:string, content:service[]) {
     try {
         await fs.promises.writeFile(filename, JSON.stringify(content), 'utf-8')
         console.log('file written successfully')
-    }catch(error) {
+
+    }   catch(error) {
         console.error(error)
     }
    

@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 import { getUserServices, updateService, getService } from "../models/services.models"
 
+//controllers to process the request and return the specific data
 
 const getUserData = async(req: Request, res: Response)=> {
     

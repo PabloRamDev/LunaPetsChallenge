@@ -5,12 +5,12 @@ import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import { useAppSelector, AppDispatch } from '@/redux/store'
 import { logOut } from '@/redux/features/authSlice'
-import { Poppins } from 'next/font/google'
+import { Lilita_One } from 'next/font/google'
 
 
 
 
-const poppins = Poppins({ 
+const latita = Lilita_One({ 
     weight: '400',
     subsets: ['latin'] }
     )
@@ -25,24 +25,24 @@ const Header = () => {
     <Link href={'/'} className='flex items-center gap-3'>
       <Image src={'/petlogo.png'} height={50} width={50} alt='paw logo'/>
      
-    <h3 className={`text-2xl hidden sm:block`}>MYPETLIFE</h3>
+    <h3 className={`${latita.className} text-2xl hidden sm:block`}>MYPETLIFE</h3>
     </Link>
     
     <nav className='flex items-center gap-5'>
         {
             email !== ""  ? 
             <> 
-                <Link href={'/dashboard'}className='px-5 py-3 '>
+                <Link href={'/dashboard'}className='px-5 py-3 hover:text-red-500 font-black duration-200 '>
                 {'DASHBOARD'}
                 </Link>
-                <button className={`${poppins.className}flex flex-col border-2 border-red-500 items-center rounded-full px-5 py-2`} onClick={()=> dispatch(logOut())}>
+                <button className={` flex flex-col border-2 border-red-500 items-center rounded-full px-5 py-2`} onClick={()=> dispatch(logOut())}>
                     {email}
-                    <p className='bg-red-400 rounded-full text-white'>
+                    <p className='bg-red-400 rounded-full px-2 text-white'>
                         logout
                     </p>
                 </button>
             </> :  
-            <Link href={'/login'}className={`${poppins.className}flex flex-col text-white items-center rounded-full bg-red-500 hover:bg-red-700 px-5 py-2`}>
+            <Link href={'/login'}className={`${latita.className}flex flex-col text-white items-center rounded-full bg-red-500 hover:bg-red-700 px-5 py-2`}>
 login
 </Link>
         }

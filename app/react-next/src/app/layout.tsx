@@ -1,19 +1,14 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Poppins,Lilita_One } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import Header from './components/Header'
-import {ReduxProvider} from '@/redux/provider'
+import { ReduxProvider } from '@/redux/provider'
 
 const poppins = Poppins({ 
   weight: '400',
   subsets: ['latin'] }
   )
 
-const lilita = Lilita_One({ 
-  weight: '400',
-  subsets: ['latin'] }
-    )
-  
 
 export const metadata: Metadata = {
   title: 'My Pet App',
@@ -27,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`text-slate-700 dark:text-gray-100 ${lilita.className} min-h-screen`}>
+      <body className={`text-slate-700 dark:text-gray-100 ${poppins.className} min-h-screen`}>
         <ReduxProvider>
           <Header />
         {children}

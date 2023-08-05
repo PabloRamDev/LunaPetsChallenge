@@ -1,13 +1,14 @@
 
 import path from 'path'
-import {serviceExists, serviceByEmail, readJSON,writeJSON} from "../helpers/helpers"
+import { serviceExists, serviceByEmail, readJSON, writeJSON } from "../helpers/helpers"
 import { service } from "../types/serivces.types"
 
+//model methos to list, retrieve and update pet services.
 
 function getUserServices(email:string):Promise<service[]>{
 
         const services = readJSON('services.json')
-        console.log(services)
+
         return new Promise((resolve,reject) => {
             
             serviceByEmail(services, email)
@@ -40,10 +41,11 @@ function updateService(id:string, newData: service) {
 
             
             const index = services.findIndex(service => service.id == data.id)
-
+            
+            const oldData = {...services[index]}
             const newFile = [...services]
 
-            newFile[index] = {
+            newFile[index] = {...oldData,
                 ...newData
             }
 
